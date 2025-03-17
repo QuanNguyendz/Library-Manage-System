@@ -1,0 +1,88 @@
+﻿<Window x:Class="WPF_QuanNAHE180983.ReaderManageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_QuanNAHE180983"
+        mc:Ignorable="d"
+        Title="ReaderManageWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Search & Header -->
+            <RowDefinition Height="*"/>
+            <!-- Reader List -->
+            <RowDefinition Height="Auto"/>
+            <!-- Add/Delete Section -->
+        </Grid.RowDefinitions>
+
+        <!-- Search & Navigation -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Search Section -->
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Search Name" FontWeight="Bold"/>
+                    <TextBox x:Name="searchName" Width="150" ToolTip="Enter reader name"/>
+                </StackPanel>
+                <Button Content="Search" Click="SearchReader_Click" Margin="10,16,0,0"/>
+            </StackPanel>
+
+            <!-- Navigation Buttons -->
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                <Button Content="Book Management" Click="Book_Click" Margin="5,0,0,0"/>
+                <Button Content="Borrowing Records Management" Click="Borrowing_Click" Margin="5,0,0,0"/>
+                <Button Content="Logout" Click="Logout_Click" Margin="5,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Reader List -->
+        <DataGrid x:Name="readerDataGrid" Grid.Row="1" Margin="0,10,0,10"
+              AutoGenerateColumns="False" SelectionChanged="readerDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Reader ID" Binding="{Binding ReaderId}" Width="80"/>
+                <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" Width="200"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
+                <DataGridTextColumn Header="Phone Number" Binding="{Binding PhoneNumber}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Add/Delete Section -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Input Fields -->
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Full Name" FontWeight="Bold"/>
+                    <TextBox x:Name="fullnameTextBox" Width="180" ToolTip="Full Name"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBlock Text="Email" FontWeight="Bold"/>
+                    <TextBox x:Name="emailTextBox" Width="180" ToolTip="Email"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBlock Text="Phone Number" FontWeight="Bold"/>
+                    <TextBox x:Name="phonenumberTextBox" Width="150" ToolTip="Phone Number"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Action Buttons -->
+            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Right">
+                <TextBlock Text="Actions" FontWeight="Bold" TextAlignment="Center"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Add" Click="AddReader_Click" Margin="5,0,0,0"/>
+                    <Button Content="Delete" Click="DeleteReader_Click" Margin="5,0,0,0"/>
+                    <Button Content="Update" Click="UpdateReader_Click" Margin="5,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

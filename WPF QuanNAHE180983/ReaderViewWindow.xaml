@@ -1,0 +1,97 @@
+﻿<Window x:Class="WPF_QuanNAHE180983.ReaderViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_QuanNAHE180983"
+        mc:Ignorable="d"
+        Title="ReaderViewWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Search Section -->
+            <RowDefinition Height="*"/>
+            <!-- Book List -->
+            <RowDefinition Height="Auto"/>
+            <!-- Borrow Section -->
+        </Grid.RowDefinitions>
+
+        <!-- Navigation Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Logout" Click="Logout_Click" Margin="5,0,0,0"/>
+        </StackPanel>
+
+        <!-- Search Section -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Title" FontWeight="Bold"/>
+                <TextBox x:Name="searchTitle" Width="120" ToolTip="Title"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                <TextBlock Text="Author" FontWeight="Bold"/>
+                <TextBox x:Name="searchAuthor" Width="120" ToolTip="Author"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                <TextBlock Text="Category" FontWeight="Bold"/>
+                <TextBox x:Name="searchCategory" Width="120" ToolTip="Category"/>
+            </StackPanel>
+            <Button Content="Search" Click="SearchBook_Click" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <!-- Book List -->
+        <DataGrid x:Name="bookDataGrid" Grid.Row="1" Margin="0,10,0,10" AutoGenerateColumns="False" SelectionChanged="bookDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Book ID" Binding="{Binding BookId}" Width="80"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="150"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="150"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="80"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Borrow Section -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Input Fields -->
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Book ID" FontWeight="Bold"/>
+                    <TextBox x:Name="bookidTextBox" Width="80" ToolTip="Book ID"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBlock Text="Title" FontWeight="Bold"/>
+                    <TextBox x:Name="titleTextBox" Width="120" ToolTip="Title"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBlock Text="Author" FontWeight="Bold"/>
+                    <TextBox x:Name="authorTextBox" Width="120" ToolTip="Author"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBlock Text="Category" FontWeight="Bold"/>
+                    <TextBox x:Name="categoryTextBox" Width="120" ToolTip="Category"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBlock Text="Quantity" FontWeight="Bold"/>
+                    <TextBox x:Name="quantityTextBox" Width="80" ToolTip="Quantity"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBlock Text="Price" FontWeight="Bold"/>
+                    <TextBox x:Name="priceTextBox" Width="80" ToolTip="Price"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Action Buttons -->
+            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Right">
+                <TextBlock Text="Actions" FontWeight="Bold" TextAlignment="Center"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Borrow" Click="BorrowBook_Click" Margin="5,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
